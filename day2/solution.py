@@ -39,4 +39,11 @@ if __name__ == '__main__':
     for report in reports:
         if report_is_valid(report):
             count += 1
+        else:
+            result = False
+            for i in range(len(report)):
+                result |= report_is_valid(report[:i] + report[i + 1:])
+                if result:
+                    count += 1
+                    break
     print(count)
