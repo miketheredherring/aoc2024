@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+from collections import defaultdict
 
 def parse_file(filename):
     l1 = []
@@ -21,8 +22,18 @@ def process_lists(l1, l2):
         s += abs(v1 - v2)
     return s
 
+def process_lists_two(l1, l2):
+    s = 0
+    sl1 = {k for k in l1}
+    for v in l2:
+        if v in sl1:
+            s += v
+    return s
+
 if __name__ == '__main__':
     l1, l2 = parse_file('input.txt')
     prepare_lists(l1, l2)
     ans = process_lists(l1, l2)
+    ans_2 = process_lists_two(l1, l2)
     print(ans)
+    print(ans_2)
